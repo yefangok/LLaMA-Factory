@@ -1,0 +1,21 @@
+### model
+# model_name_or_path: /home/clouder/.xinference/cache/Qwen2.5-Coder-7B-Instruct
+model_name_or_path: saves/Qwen2.5-Coder-7B/SFT/full/train_2024-12-24-00-00-00
+# adapter_name_or_path: saves/llama3-8b/lora/sft
+trust_remote_code: true
+
+### method
+finetuning_type: full
+
+### dataset
+task: ceval_validation  # choices: [mmlu_test, ceval_validation, cmmlu_test]
+template: fewshot
+lang: zh
+n_shot: 5
+
+### output
+save_dir: saves/Qwen2.5-Coder-7B/SFT/full/train_2024-12-24-00-00-00/eval/ceval_validation
+# save_dir: saves/Qwen2.5-Coder-7B/SFT/origin/eval/ceval_validation
+
+### eval
+batch_size: 4

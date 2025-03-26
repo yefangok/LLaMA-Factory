@@ -1,0 +1,14 @@
+### Note: DO NOT use quantized model or quantization_bit when merging lora adapters
+
+### model
+model_name_or_path: /home/clouder/.xinference/cache/Qwen2.5-Coder-7B-Instruct
+adapter_name_or_path: saves/Qwen2.5-Coder-7B/PT/lora/train_2025-02-10-21-00-00  #/pissa_converted
+template: qwen
+finetuning_type: bone   #lora   #
+trust_remote_code: true
+
+### export
+export_dir: saves/Qwen2.5-Coder-7B/PT/lora/train_2025-02-10-21-00-00/export
+export_size: 5
+export_device: cpu
+export_legacy_format: false

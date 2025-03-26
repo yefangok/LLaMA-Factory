@@ -174,10 +174,3 @@ wandb/
 swanlog/
 generated_predictions.jsonl
 .vscode
-run_script.md
-code_auto_run.sh
-code_auto_task.sh
-code_eval.yaml
-code_full_training.yaml
-code_sft_training.yaml
-export_lora.yaml

@@ -1,0 +1,76 @@
+## model
+model_name_or_path: /home/clouder/.xinference/cache/Qwen2.5-Coder-7B-Instruct
+#model_name_or_path: saves/Qwen2.5-Coder-7B/PT/lora/train_2025-01-06-16-45-00/export
+#adapter_name_or_path: saves/Qwen2.5-Coder-7B/PT/lora/train_2025-01-06-16-45-00
+trust_remote_code: true
+
+## output
+output_dir: saves/Qwen2.5-Coder-7B/PT/lora/train_2025-02-16-21-00-00
+logging_steps: 1
+save_steps: 20
+plot_loss: true
+report_to: all
+include_num_input_tokens_seen: true
+save_total_limit: 1
+load_best_model_at_end: true  # 在训练结束时加载最佳模型
+metric_for_best_model: "eval_loss"  # 使用eval_loss作为选择最佳模型的指标
+
+## method
+stage: pt
+do_train: true
+do_eval: true
+finetuning_type: bone     #lora     # full  #
+#deepspeed: examples/deepspeed/ds_z2_offload_config.json  # choices: [ds_z0_config.json, ds_z2_config.json, ds_z3_config.json]
+### bond
+lora_rank: 256
+# ### lora
+# lora_alpha: 64
+# lora_dropout: 0
+# lora_rank: 128
+# lora_target: all
+# pissa_init: true
+# pissa_iter: 16
+# pissa_convert: true
+# use_unsloth: true
+# ### badam
+# use_badam: false
+# badam_mode: layer
+# badam_switch_mode: ascending
+# badam_switch_interval: 10
+# badam_update_ratio: 0.05
+### liger_kernel
+# enable_liger_kernel: true
+flash_attn: auto    #fa2
+
+## dataset
+dataset_dir: /home/clouder/ose_code_model_data_preprocess/train
+dataset: ose_pt_all, ose_annealing_all
+template: empty
+cutoff_len: 4096
+max_samples: 100000
+#eval_dataset: ose_pt_eval
+#disable_shuffling: true
+preprocessing_num_workers: 16
+overwrite_cache: true
+
+### train
+learning_rate: 1.5e-05
+num_train_epochs: 3.0
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 32
+lr_scheduler_type: cosine
+max_grad_norm: 1.95
+bf16: true
+warmup_steps: 0
+optim: adamw_torch    #adamw_8bit   #
+use_adam_mini: false
+packing: false
+ddp_timeout: 180000000
+
+### eval
+val_size: 0.1
+eval_strategy: steps      # 每隔一定步数进行评估
+eval_steps: 10             # 每5步进行一次评估
+per_device_eval_batch_size: 4
+
+
