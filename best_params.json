@@ -1,0 +1,7 @@
+{
+  "best_value": Infinity,
+  "best_params": {
+    "finetuning_type": "badam",
+    "dataset": "ose_pt,ose_annealing"
+  }
+}
